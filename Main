@@ -1,0 +1,69 @@
+package Joseline_Arel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main 
+{
+    public static void main (String []args){
+        
+    Scanner entrada = new Scanner (System.in);
+    
+    List<Integer> lista = new ArrayList<Integer>();
+    
+    int a=1,Respuesta=0, Numero, Act;
+    
+    while(a==1){
+        System.out.println("Elije una Opcion");
+        System.out.println("1.- Insertar");
+        System.out.println("2.- Mostrar");
+        System.out.println("3.- Salir");
+        Respuesta=entrada.nextInt();
+            
+        if(Respuesta>0 && Respuesta<4){
+            switch(Respuesta){
+                case 1: 
+                    System.out.println("Introduzca un numero");
+                    Numero=entrada.nextInt();
+                    lista.add(Numero);
+                break;
+                case 2: 
+                    int Salto, i, j, k;
+                    Salto = lista.size()/2;
+                    while(Salto>0){
+                        for(i=Salto;i<lista.size();i++){
+                            j=i-Salto;
+                            while(j>=0){
+                                k=j+Salto;
+                                if (lista.get(j) <= lista.get(k)){
+                                    j=-1;
+                                }
+                                else{
+                                    Act=lista.get(j);
+                                    lista.set(j, lista.get(k));
+                                    lista.set(k, Act);
+                                    j-=Salto;
+                                }
+                            }
+                        }
+                        Salto=Salto/2;
+                    }
+                
+                    System.out.println("La lista ordenada quedaria de la siguiente manera: ");
+                    System.out.println(lista);
+                break;
+                case 3: 
+                System.exit(0);
+                break;
+            }
+            System.out.println("Quieres repetir el proceso 1:Si 2:No");
+            a=entrada.nextInt();
+            }
+            else
+            {
+                System.out.println("El numero que ingresaste esta fuera de las opciones ");
+            }
+        }     
+    }
+}
